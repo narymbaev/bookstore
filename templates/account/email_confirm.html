@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+
+{% load i18n %}
+{% load account %}
+
+{% block head-title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Confirm E-mail Address" %}</h1>
+
+{% if confirmation %}
+
+{% user_display confirmation.email_address.user as user_display %}
+
+<p>{% blocktrans with confirmation.email_address as email %}Please confirm that <a href="">{{email}}</a> is an email address for user {{user_display}}.{% endblocktrans %}</p>
+
+ <form action="" method="post">{% csrf_token %}
+    <input type="submit" class="btn btn-primary" value="Confirm">
+ </form>
+
+ {% endif %}
+
+ {% endblock %}
